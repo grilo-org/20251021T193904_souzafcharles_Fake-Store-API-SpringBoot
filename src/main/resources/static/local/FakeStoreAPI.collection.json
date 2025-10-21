@@ -1,0 +1,196 @@
+{
+  "info": {
+    "name": "Fake Store API Full Collection",
+    "_postman_id": "abcdef12-3456-7890-abcd-ef1234567890",
+    "description": "Full API Collection for Products, Carts, CartProducts and Users",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Sports Trainers\",\n  \"price\": 199.9,\n  \"description\": \"Comfortable trainers for running\",\n  \"category\": \"Sports\",\n  \"image\": \"http://example.com/trainers.jpg\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/products", "host": ["{{baseUrl}}"], "path": ["products"] }
+          },
+          "response": []
+        },
+        {
+          "name": "List Paginated Products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/products?page=0&size=10&sort=price,desc",
+              "host": ["{{baseUrl}}"],
+              "path": ["products"],
+              "query": [
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "10" },
+                { "key": "sort", "value": "price,desc" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find Product by ID",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/products/1", "host": ["{{baseUrl}}"], "path": ["products", "1"] } },
+          "response": []
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Trainers\",\n  \"price\": 210.0,\n  \"description\": \"Updated\",\n  \"category\": \"Sports\",\n  \"image\": \"http://example.com/trainers.jpg\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/products/1", "host": ["{{baseUrl}}"], "path": ["products", "1"] }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Product",
+          "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/products/1", "host": ["{{baseUrl}}"], "path": ["products", "1"] } },
+          "response": []
+        },
+        {
+          "name": "Top N Most Expensive Products",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/products/top-expensive?topN=5", "host": ["{{baseUrl}}"], "path": ["products", "top-expensive"], "query": [{ "key": "topN", "value": "5" }] } },
+          "response": []
+        },
+        {
+          "name": "Top N Cheapest Products",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/products/top-cheapest?topN=5", "host": ["{{baseUrl}}"], "path": ["products", "top-cheapest"], "query": [{ "key": "topN", "value": "5" }] } },
+          "response": []
+        },
+        {
+          "name": "Average Price per Category",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/products/average-price-category", "host": ["{{baseUrl}}"], "path": ["products", "average-price-category"] } },
+          "response": []
+        },
+        {
+          "name": "Products by Price Range",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/products/price-range?min=50&max=200", "host": ["{{baseUrl}}"], "path": ["products", "price-range"], "query": [{ "key": "min", "value": "50" }, { "key": "max", "value": "200" }] } },
+          "response": []
+        },
+        {
+          "name": "Search Products by Keyword",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/products/search?keyword=sports", "host": ["{{baseUrl}}"], "path": ["products", "search"], "query": [{ "key": "keyword", "value": "Power" }] } },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Carts",
+      "item": [
+        {
+          "name": "Create Cart",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userId\": \"1\",\n  \"products\": [{\"productId\":\"1\",\"quantity\":2}]\n}" },
+            "url": { "raw": "{{baseUrl}}/carts", "host": ["{{baseUrl}}"], "path": ["carts"] }
+          },
+          "response": []
+        },
+        {
+          "name": "List Carts",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/carts?page=0&size=10", "host": ["{{baseUrl}}"], "path": ["carts"], "query": [{ "key": "page", "value": "0" }, { "key": "size", "value": "10" }] } },
+          "response": []
+        },
+        {
+          "name": "Get Cart by ID",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/carts/1", "host": ["{{baseUrl}}"], "path": ["carts", "1"] } },
+          "response": []
+        },
+        {
+          "name": "Update Cart",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userId\": \"1\",\n  \"products\": [{\"productId\":\"1\",\"quantity\":3}]\n}" },
+            "url": { "raw": "{{baseUrl}}/carts/1", "host": ["{{baseUrl}}"], "path": ["carts", "1"] }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Cart",
+          "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/carts/1", "host": ["{{baseUrl}}"], "path": ["carts", "1"] } },
+          "response": []
+        },
+        {
+          "name": "Get Carts by User ID",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/carts/user/1", "host": ["{{baseUrl}}"], "path": ["carts", "user", "1"] } },
+          "response": []
+        },
+        {
+          "name": "Get Total Products for User",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/carts/user/1/total-products", "host": ["{{baseUrl}}"], "path": ["carts", "user", "1", "total-products"] } },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"username\":\"john_doe\",\n  \"email\":\"john@example.com\",\n  \"password\":\"123456\"\n}" }, "url": { "raw": "{{baseUrl}}/users", "host": ["{{baseUrl}}"], "path": ["users"] } },
+          "response": []
+        },
+        {
+          "name": "Search Users by Username",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/users/search?keyword=john", "host": ["{{baseUrl}}"], "path": ["users", "search"], "query": [{ "key": "keyword", "value": "john" }] } },
+          "response": []
+        },
+        {
+          "name": "Get User by Email",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/users/by-email?email=john@example.com", "host": ["{{baseUrl}}"], "path": ["users", "by-email"], "query": [{ "key": "email", "value": "john@example.com" }] } },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cart Products",
+      "item": [
+        {
+          "name": "Add Product to Cart",
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"productId\":\"1\",\n  \"quantity\":2\n}" }, "url": { "raw": "{{baseUrl}}/cart-products/1", "host": ["{{baseUrl}}"], "path": ["cart-products", "1"] } },
+          "response": []
+        },
+        {
+          "name": "Get Products in Cart",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/cart-products/1", "host": ["{{baseUrl}}"], "path": ["cart-products", "1"] } },
+          "response": []
+        },
+        {
+          "name": "Remove Product from Cart",
+          "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/cart-products/1/1", "host": ["{{baseUrl}}"], "path": ["cart-products", "1", "1"] } },
+          "response": []
+        },
+        {
+          "name": "Most Sold Products",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/cart-products/analytics/most-sold?topN=5", "host": ["{{baseUrl}}"], "path": ["cart-products", "analytics", "most-sold"], "query": [{ "key": "topN", "value": "5" }] } },
+          "response": []
+        },
+        {
+          "name": "Revenue per Product",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/cart-products/analytics/revenue", "host": ["{{baseUrl}}"], "path": ["cart-products", "analytics", "revenue"] } },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" }
+  ]
+}
